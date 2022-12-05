@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'src/app/shared.service';
+import { VendorModel } from 'src/app/vendor-model';
 
 @Component({
   selector: 'app-block-vendor',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlockVendorComponent implements OnInit {
 
-  constructor() { }
+  sVendor!:VendorModel
+  constructor(private ss : SharedService) { }
+  
+  
 
   ngOnInit(): void {
+    this.ss.venobs.subscribe((vend)=>{
+      this.sVendor=vend;
+    })
   }
 
 }
